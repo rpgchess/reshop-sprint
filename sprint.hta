@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=9,chrome=1">
+    <title>RESHOP SPRINT</title>
+
+    <HTA:APPLICATION ID="reshop"
+     APPLICATIONNAME="Sprint"
+     BORDER="dialog"
+     BORDERSTYLE="static"
+     CAPTION="yes"
+     ICON=""
+     INNERBORDER="no"
+     MAXIMIZEBUTTON="no"
+     MINIMIZEBUTTON="no"
+     SCROLL="no"
+     SHOWINTASKBAR="no"
+     SINGLEINSTANCE="no"
+     SYSMENU="yes"
+     VERSION="1.0"
+     WINDOWSTATE="normal"/>
+     
+    <!-- Bootstrap, Datatables and Alertify -->
+    <link rel="stylesheet" href="../libs/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../libs/jquery/datatables/1.10.21/datatables.min.css">
+    <link rel="stylesheet" href="../libs/alertifyjs/1.13.1/css/alertify.min.css">
+    <link rel="stylesheet" href="../libs/alertifyjs/1.13.1/css/themes/semantic.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/btn-toggle.css">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function daysToMilliseconds(days) {
+      return days * 24 * 60 * 60 * 1000;
+    }
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+        ['5635', 'RESHOP-5635', new Date(2023, 0, 1), new Date(2023, 0, 31), null, 0, null],
+        ['6024', 'RESHOP-6024', new Date(2023, 0, 1), new Date(2023, 0, 31), null, 0, null]
+      ]);
+
+      var options = {
+        width: 1690,
+        height: 275,
+        gantt: {
+          trackHeight: 30,
+          criticalPathEnabled: false,
+          innerGridHorizLine: {
+            stroke: '#ffe0b2',
+            strokeWidth: 2
+          },
+          innerGridTrack: {fill: '#fff3e0'},
+          innerGridDarkTrack: {fill: '#ffcc80'}
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('gantt'));
+
+      chart.draw(data, options);
+    }
+  </script>
+  </head>
+  <body>
+    <div id="gantt"></div>
+    <!-- Dependência jQuery, Bootstrap, Datatables and Alertify -->
+    <script src="libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="libs/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="libs/jquery/datatables/1.10.21/datatables.min.js"></script>
+    <script src="libs/alertifyjs/1.13.1/alertify.min.js"></script>
+    <!-- Dependências Includes ADO and Utils -->
+    <script src="inc/utils.js"></script>
+    <!-- <script src="../inc/ado/system.js"></script>
+    <script src="../inc/ado/file.js"></script>
+    <script src="../inc/ado/db.js"></script> -->
+    <!-- Source -->
+    <script src="js/arguments.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

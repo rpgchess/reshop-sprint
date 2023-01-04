@@ -1,0 +1,10 @@
+* {
+    margin: 2px;
+    padding: 0;
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+.btn {
+    font-weight: bold;
+}
